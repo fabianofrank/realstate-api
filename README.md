@@ -1,24 +1,18 @@
-# README
+rails g scaffold property city:string district:string street:string bed:integer bath:integer size:float parking:integer description:text
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+rails g scaffold_controller property
 
-Things you may want to cover:
+gem "image_processing", "~> 1.2"
+rails active_storage:install
 
-* Ruby version
+// development.rb
+config.active_storage.service = :local
 
-* System dependencies
+// storage.yml
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
