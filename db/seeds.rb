@@ -1,7 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+cities = ['Rio de Janeiro', 'Palhoça', 'Montes Claros', 'Belo Horizonte', 'Florianópolis']
+addresses = ['Rua Iluminato Borges Rios, 369', 'Rua Francisco de Assis, 1258', 'Av. Mangabeiras, 789', 'Rua Major Prates, 964', 'Rua Santa Catarina , 6500']
+beds = [1, 2, 3, 3, 4]
+baths = [1, 2, 2, 3, 4]
+sizes = [60.5, 47.8, 185.9, 270.0, 114.7]
+parkings = [1, 2, 3, 3, 4]
+description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+
+50.times do |number|
+   @property = Property.new(
+      name: 'House',
+      city: cities[(number % 5)],
+      address: addresses[(number % 5)],
+      bed: beds[(number % 5)],
+      bath: baths[(number % 5)],
+      size: sizes[(number % 5)],
+      parking: parkings[(number % 5)],
+      description: description,
+   )
+   @property.save
+end

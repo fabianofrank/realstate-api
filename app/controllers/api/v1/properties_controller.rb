@@ -1,25 +1,19 @@
-class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[ show edit update destroy ]
-
-  # GET /properties or /properties.json
+class Api::V1::PropertiesController < ApplicationController
   def index
     @properties = Property.all
+    render json: @properties
   end
 
-  # GET /properties/1 or /properties/1.json
   def show
   end
 
-  # GET /properties/new
   def new
     @property = Property.new
   end
 
-  # GET /properties/1/edit
   def edit
   end
 
-  # POST /properties or /properties.json
   def create
     @property = Property.new(property_params)
 
@@ -34,7 +28,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /properties/1 or /properties/1.json
   def update
     respond_to do |format|
       if @property.update(property_params)
@@ -58,13 +51,7 @@ class PropertiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property
-      @property = Property.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:city, :district, :street, :bed, :bath, :size, :parking, :description)
+      params.permit(:city, :district, :street, :bed, :bath, :size, :parking, :description)
     end
 end
