@@ -1,0 +1,10 @@
+<% @properties.each do |property| %>
+  <div>
+    <%= property.name %>
+    </br>
+    <% property.images.each do |image|%>
+      <%= image_tag(image) %>
+      </br>
+    <%end%>
+  </div>
+<%end%>

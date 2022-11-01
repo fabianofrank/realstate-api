@@ -1,0 +1,11 @@
+<%= form_with model: @property, url: properties_path, local: true, method: :post do |form| %>
+  <div>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+  <div>
+    <%= form.submit "Submit" %>
+  </div>
+<%end%>

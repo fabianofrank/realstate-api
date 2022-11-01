@@ -1,7 +1,6 @@
-class Api::V1::PropertiesController < ApplicationController
+class PropertiesController < ApplicationController
   def index
     @properties = Property.all
-    render json: @properties
   end
 
   def show
@@ -15,17 +14,7 @@ class Api::V1::PropertiesController < ApplicationController
   end
 
   def create
-    @property = Property.new(property_params)
-
-    respond_to do |format|
-      if @property.save
-        format.html { redirect_to property_url(@property), notice: "Property was successfully created." }
-        format.json { render :show, status: :created, location: @property }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
-      end
-    end
+    @property = Property.create(property_params)
   end
 
   def update
