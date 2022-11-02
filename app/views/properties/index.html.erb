@@ -2,8 +2,14 @@
   <div>
     <%= property.name %>
     </br>
+
     <% property.image_as_thumbnail.each do |image|%>
-      <%= image_tag(image) %>
+      <%= link_to image_tag(image), image %>
+    <%end%>
+    </br>
+
+    <% property.images.each do |image|%>
+      <%= link_to image_tag(property.display_as_thumbnail(image)), image %>
       </br>
     <%end%>
   </div>

@@ -10,4 +10,8 @@ class Property < ApplicationRecord
       image.variant(resize_to_limit: [800, 800]).processed
     end
   end
+
+  def display_as_thumbnail(image)
+    image.variant(resize_to_limit: [800, 800]).processed
+  end
 end
