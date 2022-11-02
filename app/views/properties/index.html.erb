@@ -3,7 +3,7 @@
     <%= property.name %>
     </br>
     <% property.images.each do |image|%>
-      <%= image_tag(image) %>
+      <%= image_tag(image, style:"max-width:800px; min-width:500px") %>
       </br>
     <%end%>
   </div>
