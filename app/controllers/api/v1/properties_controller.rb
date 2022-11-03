@@ -17,35 +17,28 @@ class Api::V1::PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
 
-    respond_to do |format|
-      if @property.save
-        format.html { redirect_to property_url(@property), notice: 'Property was successfully created.' }
-        format.json { render :show, status: :created, location: @property }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
-      end
+    if @property.save
+      render json: @property, status: :created
+    else
+      render json: @property.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @property.update(property_params)
-        format.html { redirect_to property_url(@property), notice: 'Property was successfully updated.' }
-        format.json { render :show, status: :ok, location: @property }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
-      end
+    @property = Property.find(params[:id])
+    if @property.update(property_params)
+      render json: { message: 'property Removed' }, status: :ok
+    else
+      render json: @property.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @property.destroy
-
-    respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
-      format.json { head :no_content }
+    @property = Property.find(params[:id])
+    if @property.destroy
+      render json: { message: 'property Removed' }, status: :ok
+    else
+      render json: @property.errors, status: :unprocessable_entity
     end
   end
 
