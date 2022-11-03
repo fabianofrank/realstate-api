@@ -14,4 +14,8 @@ class Property < ApplicationRecord
   def display_as_thumbnail(image)
     image.variant(resize_to_limit: [800, 800]).processed
   end
+
+  def cover_image
+    Property.images.select(3)
+  end
 end

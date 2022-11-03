@@ -18,7 +18,7 @@ class Api::V1::PropertiesController < ApplicationController
     @property = Property.new(property_params)
 
     if @property.save
-      render json: @property, status: :created
+      render json: @property, @property.cover_image, status: :created
     else
       render json: @property.errors, status: :unprocessable_entity
     end
