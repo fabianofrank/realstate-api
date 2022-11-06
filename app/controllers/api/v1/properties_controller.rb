@@ -1,9 +1,23 @@
 # frozen_string_literal: true
 
 class Api::V1::PropertiesController < ApplicationController
+  def get_image(images)
+    
+  end
+  
   def index
     @properties = Property.all
-    render json: @properties
+    properties_render = @properties.map do |property| 
+      if property.images.attached?
+        image_urls = property.images.map do |image|
+          image = url_for(image)
+        end
+        property.as_json.merge(images: image_urls)
+      else 
+        render json: property
+      end
+    end
+    render json: properties_render
   end
 
   def show; end
@@ -15,28 +29,25 @@ class Api::V1::PropertiesController < ApplicationController
   def edit; end
 
   def create
-    @property = Property.new(property_params)
-
+    @property = Property.create(property_params)
     if @property.save
-      render json: @property, @property.cover_image, status: :created
+      render json: @property, status: :created
     else
       render json: @property.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    @property = Property.find(params[:id])
     if @property.update(property_params)
-      render json: { message: 'property Removed' }, status: :ok
+      render json: { message: 'Property Updated' }, status: :ok
     else
       render json: @property.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @property = Property.find(params[:id])
     if @property.destroy
-      render json: { message: 'property Removed' }, status: :ok
+      render json: { message: 'Property Removed' }, status: :ok
     else
       render json: @property.errors, status: :unprocessable_entity
     end

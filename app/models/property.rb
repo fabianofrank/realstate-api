@@ -16,6 +16,6 @@ class Property < ApplicationRecord
   end
 
   def cover_image
-    Property.images.select(3)
+    @property.images[2]
   end
 end
