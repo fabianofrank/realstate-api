@@ -21,7 +21,8 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Property.count') do
       post properties_url,
            params: { property: { bath: @property.bath, bed: @property.bed, city: @property.city,
-                                 description: @property.description, district: @property.district, parking: @property.parking, size: @property.size, street: @property.street } }
+                                 description: @property.description, district: @property.district,
+                                 parking: @property.parking, size: @property.size, street: @property.street } }
     end
 
     assert_redirected_to property_url(Property.last)
@@ -40,7 +41,8 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
   test 'should update property' do
     patch property_url(@property),
           params: { property: { bath: @property.bath, bed: @property.bed, city: @property.city,
-                                description: @property.description, district: @property.district, parking: @property.parking, size: @property.size, street: @property.street } }
+                                description: @property.description, district: @property.district,
+                                parking: @property.parking, size: @property.size, street: @property.street } }
     assert_redirected_to property_url(@property)
   end
 

@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
 class Api::V1::PropertiesController < ApplicationController
-  def get_image(images)
-    
-  end
-  
+  def get_image(images); end
+
   def index
     @properties = Property.all
-    properties_render = @properties.map do |property| 
+    properties_render = @properties.map do |property|
       if property.images.attached?
         image_urls = property.images.map do |image|
           image = url_for(image)
         end
         property.as_json.merge(images: image_urls)
-      else 
+      else
         render json: property
       end
     end
@@ -46,6 +44,7 @@ class Api::V1::PropertiesController < ApplicationController
   end
 
   def destroy
+    @property = Property.find(params[:id])
     if @property.destroy
       render json: { message: 'Property Removed' }, status: :ok
     else
