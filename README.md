@@ -1,4 +1,4 @@
-# Real State Application
+# Real Estate Application - API
 
 ## Important:
 
@@ -78,7 +78,7 @@ Give a ⭐️ if you like this project!
 
 - Hat tip to [Ronald](https://github.com/rskinnerc)
 
-- Thanks to [Plathanus](https://www.plathanus.com.br/en-US) for giving me the opportunity to create build [this fantastic design](https://tabas.com/) that this project was based on!
+- Thanks to [Plathanus](https://www.plathanus.com.br/en-US) for giving me the opportunity to build [this fantastic design](https://tabas.com/) that this project was based on!
 
 ## License: :monocle_face:
 
